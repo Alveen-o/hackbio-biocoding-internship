@@ -1,1 +1,101 @@
+# Dictionary containing team members' information
+team_db = {
+    "Alvin": {
+        "Name": "Alvin Obande",
+        "Slack Username": "Alvin",
+        "Email": "alvinobande123@gmail.com",
+        "Hobby": "Music",
+        "Country": "Nigeria",
+        "Discipline": "Medical Biotechnology",
+        "Programming Language": "Python"
+    },
+    "Natt": {
+        "Name": "Nathini (Natt) Sion",
+        "Slack Username": "Natt",
+        "Email": "im.nathn@gmail.com",
+        "Hobby": "Read manga",
+        "Country": "Australia",
+        "Discipline": "Biotechnology",
+        "Programming Language": "Python"
+    },
+    "Teodora": {
+        "Name": "Teodora Despotovski",
+        "Slack Username": "Teodora",
+        "Email": "teodoradespotovski@gmail.com",
+        "Hobby": "Cooking",
+        "Country": "Serbia",
+        "Discipline": "Biochemistry",
+        "Programming Language": "Python"
+    },
+    "Bilal": {
+        "Name": "Bilal Ashraf",
+        "Slack Username": "bilal ashraf",
+        "Email": "eclecticbilalashraf@gmail.com",
+        "Hobby": "Mixed Martial Arts",
+        "Country": "Germany",
+        "Discipline": "Bioinformatics",
+        "Programming Language": "Python"
+    },
+    "Tanson": {
+        "Name": "Tanson Senyo Kelvin",
+        "Slack Username": "K.Tanson",
+        "Email": "Kelvins.tanson@gmail.com",
+        "Hobby": "Graphic Design",
+        "Country": "Ghana",
+        "Discipline": "Medical Biotechnology and Molecular Biology",
+        "Programming Language": "R"
+    }
+}
+
+# Printing team information
+print("=" * 40)
+print("TEAM DATABASE INFORMATION")
+print("=" * 40)
+
+print("\nAlvin:\n" +
+      "  Name: " + team_db["Alvin"]["Name"] + "\n" +
+      "  Slack Username: " + team_db["Alvin"]["Slack Username"] + "\n" +
+      "  Email: " + team_db["Alvin"]["Email"] + "\n" +
+      "  Hobby: " + team_db["Alvin"]["Hobby"] + "\n" +
+      "  Country: " + team_db["Alvin"]["Country"] + "\n" +
+      "  Discipline: " + team_db["Alvin"]["Discipline"] + "\n" +
+      "  Programming Language: " + team_db["Alvin"]["Programming Language"] + "\n")
+
+print("Natt:\n" +
+      "  Name: " + team_db["Natt"]["Name"] + "\n" +
+      "  Slack Username: " + team_db["Natt"]["Slack Username"] + "\n" +
+      "  Email: " + team_db["Natt"]["Email"] + "\n" +
+      "  Hobby: " + team_db["Natt"]["Hobby"] + "\n" +
+      "  Country: " + team_db["Natt"]["Country"] + "\n" +
+      "  Discipline: " + team_db["Natt"]["Discipline"] + "\n" +
+      "  Programming Language: " + team_db["Natt"]["Programming Language"] + "\n")
+
+print("Teodora:\n" +
+      "  Name: " + team_db["Teodora"]["Name"] + "\n" +
+      "  Slack Username: " + team_db["Teodora"]["Slack Username"] + "\n" +
+      "  Email: " + team_db["Teodora"]["Email"] + "\n" +
+      "  Hobby: " + team_db["Teodora"]["Hobby"] + "\n" +
+      "  Country: " + team_db["Teodora"]["Country"] + "\n" +
+      "  Discipline: " + team_db["Teodora"]["Discipline"] + "\n" +
+      "  Programming Language: " + team_db["Teodora"]["Programming Language"] + "\n")
+
+print("Bilal:\n" +
+      "  Name: " + team_db["Bilal"]["Name"] + "\n" +
+      "  Slack Username: " + team_db["Bilal"]["Slack Username"] + "\n" +
+      "  Email: " + team_db["Bilal"]["Email"] + "\n" +
+      "  Hobby: " + team_db["Bilal"]["Hobby"] + "\n" +
+      "  Country: " + team_db["Bilal"]["Country"] + "\n" +
+      "  Discipline: " + team_db["Bilal"]["Discipline"] + "\n" +
+      "  Programming Language: " + team_db["Bilal"]["Programming Language"] + "\n")
+
+print("Tanson:\n" +
+      "  Name: " + team_db["Tanson"]["Name"] + "\n" +
+      "  Slack Username: " + team_db["Tanson"]["Slack Username"] + "\n" +
+      "  Email: " + team_db["Tanson"]["Email"] + "\n" +
+      "  Hobby: " + team_db["Tanson"]["Hobby"] + "\n" +
+      "  Country: " + team_db["Tanson"]["Country"] + "\n" +
+      "  Discipline: " + team_db["Tanson"]["Discipline"] + "\n" +
+      "  Programming Language: " + team_db["Tanson"]["Programming Language"])
+
+
 
