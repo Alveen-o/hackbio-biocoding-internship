@@ -1,3 +1,7 @@
+import numpy as np
+import pandas as pd
+
+# Genetic Code Dictionary
 genetic_code = {
     'ATA': 'I', 'ATC': 'I', 'ATT': 'I', 'ATG': 'M',
     'ACA': 'T', 'ACC': 'T', 'ACG': 'T', 'ACT': 'T',
@@ -17,172 +21,142 @@ genetic_code = {
     'TGC': 'C', 'TGT': 'C', 'TGA': '*', 'TGG': 'W'
 }
 
-
-def dna_to_protein(seq):
+# DNA to Protein Function
+def dna_to_protein(dna_sequence):
     """
     Translates a given DNA sequence into a protein sequence.
     Stops translation at a stop codon (*).
 
     Parameters:
-        seq (str): DNA sequence (assumed to be in 5' to 3' direction)
+        dna_sequence (str): DNA sequence in 5' to 3' direction.
 
     Returns:
-        str: Translated protein sequence
+        str: Translated protein sequence.
     """
-    seq = seq.upper()  # Convert sequence to uppercase
-    protein_seq = []  # Use list for efficiency
+    dna_sequence = dna_sequence.upper()
+    protein_sequence = []
 
-    for i in range(0, len(seq) - 2, 3):  # Ensure valid triplets
-        codon = seq[i:i + 3]
+    for i in range(0, len(dna_sequence) - 2, 3):
+        codon = dna_sequence[i:i + 3]
         amino_acid = genetic_code.get(codon, 'X')  # 'X' for unknown codons
-        if amino_acid == '*':  # Stop translation at stop codon
+        if amino_acid == '*':
             break
-        protein_seq.append(amino_acid)
+        protein_sequence.append(amino_acid)
 
-    return ''.join(protein_seq)  # Join list into string
-
-
+    return ''.join(protein_sequence)
 # Test cases
-test_sequences = [
-    'TCGCGCACGCTGATCGTGGGGTGA',
-    'agtaaaactttaattgttggttaa',
-    'GCCATGGAGGCCCATCAGTTTATTAAGGCTCCTGGCATCACTACTGCTATTGAGCAGGCTGCTCTAGCAGCGGCCAACTCTGCCCTTGCGAATGCTGTGGTAGTTAGGCCTTTTCTCTCTCACCAGCAGATTGAGATCCTTATTAACCTAATGCAACCTCGCCAGCTTGTTTTCCGCCCCGAGGTTTTCTGGAACCATCCCATCCAGCGTGTTATCCATAATGAGCTGGAGCTTTACTGTCGCGCCCGTTCCGGCCGCTGCCTTGAAATTGGTGCCCACCCCCGCTCAATAAATGATAACCCTAATGTGGTCCACCGCTGCTTCCTCCGCCCTGCCGGGCGTGATGTTCAGCGTTGGTATACTGCCCCTACCCGCGGGCCGGCTGCTAATTGCCGGCGTTCCGCACTGCGCGGGCTCCCCGCTGCTGACCGCACTTACTGCTTCGACGGGTTTTCTGGCTGTAACTTTCCCGCCGAGACTGGCGTCGCCCTCTATTCTCTCCATGATATGTCACCATCTGATGTCGCCGAGGCTATGTTCCGCCATGGTATGACGCGGCTTTACGCTGCCCTCCACCTCCCGCCTGAGGTCCTGTTGCCCCCTGGCACATACCGCACCGCGTCGTACTTGCTGATCCATGACGGCAGGCGCGTTGTGGTGACGTATGAGGGTGACACTAGTGCTGGTTATAACCACGATGTTTCCAACCTGCGCTCCTGGATTAGAACCACTAAGGTTACCGGAGACCATCCTCTCGTCATTGAGCGGGTTAGGGCCATTGGCTGCCACTTTGTCCTCTTACTCACGGCAGCCCCGGAGCCATCACCTACGCCCTATGTTCCTTACCCCCGGTCTACCGAGGTCTATGTCCGATCGATCTTCGGCCCGGGTGGTACCCCCTCCCTATTTTCCAACCTCATGCTCCACTAAGTCGACCTTCCATGCTGTCCCTGCCCATATCTGGGACCGTCTCATGTTGTTCGGGGCCACCCTAGATGACCAAGCCTTTTGCTGCTCCCGCCTAATGACTTACCTCCGTGGCATTAGCTACAAGGTTACTGTGGGCACCCTTGTTGCCAATGAAGGCTGGAACGCCTCTGAGGTCGCTCTTACAGCTGTCATCACTGCCGCCTACCTTACCATCTGCCACCAGCGGTACCTCCGCACTCAGGCTATATCTAAGGGGATGCGCCGTCTGGAGCGGGAGCATGCTCAGAAGTTTATAACACGCCTCTACAGTTGGCTCTTTGAGAAGTCCGGCCGTGATTATATCCCCGGCCGTCAGTTGGAGTTCTACGCTCAGTGTAGGCGCTGGCTCTCGGCCGGCTTTTCATCTTGACCCACGGGTGTTGGTTTTTGATGAGTCGGCCCCCTGCCACTGTAGGACTGCGATTCGTAAGGCGGTCTCAAAGTTTTGCTGTTTTATGAAGTGGCTGGGCCAGGAGTGCACCTGTTTCCTACAACCTGCAGAAGGCGCCGTCGGCGACCAGGGCCATGACAACGAGGCCTATGAGGGGTCTGATGTCGACCCCGCTGAATCCGCTATTAGTGACATATCTGGGTCCTACGTCGTCCCTGGCACTGCCCTCCAACCGCTTTACCAAGCCCTTGACCTCCCCGCTGAGATTGTGGCTCGTGCAGGCCGGCTGACCGCCACAGTAAAGGTCTCCCAGGTCGACGGGCGGATCGATTGTGAGACCCTTCTCGGTAATAAAACCTTCCGCACGTCGTTTGTTGACGGGGCGGTTTTAGAGACTAATGGCCCAGAGCGCCACAATCTCTCTTTTGATGCCAGTCAGAGCACTATGGCCGCCGGCCCTTTCAGTCTCACCTATGCCGCCTCTGCTGCTGGGCTGGAGGTGCGCTATGTCGCTGCCGGGCTTGACCACCGGGCGGTTTTTGCCCCCGGCGTTTCACCCCGGTCAGCCCCTGGCGAGGTCACCGCCTTTTGTTCTGCCCTATACAGGTTTAATCGCGAGGCCCAGCGCCTTTCGCTCACCGGTAATTTTTGGTTCCATCCTGAGGGGCTCCTTGGCCCCTTTGCCCCGTTTTCCCCCGGGCATGTTTGGGAGTCGGCTAATCCATTCTGTGGAGAGAGCACACTTTACACCCGCACTTGGTCGGAGGTTGATGCTGTTTCTAGTCCAGCCCAGCCCGACTTAGGTTTTATATCTGAGCCTTCTATACCTAGTAGGGCCGCCACACTTACCCCGGCGGCCCCTCTACCCCCCCCTGCACGGAATCCTTCCCCTACTCCCTCTGCTCCGGCGCGTGGTGAGCCGGCTCCTGGCGCTACCGCCCGGGCCCCGGCCATAACCCACCAGGCGGCCCGGCATCGCCGCCTGCTCTTTACCTACCCGGATGGCTCTAAGGTATTCGCCGGCTCGCTGTTTGAGTCGACATGTACCTGGCTCGTTAACGCGTCTAATGTTG'
-]
-import numpy as np
-import pandas as pd
+test_sequences = 'GCCATGGAGGCCCATCAGTTTATTAAGGCTCCTGGCATCACTACTGCTATTGAGCAGGCTGCTCTAGCAGCGGCCAACTCTGCCCTTGCGAATGCTGTGGTAGTTAGGCCTTTTCTCTCTCACCAGCAGATTGAGATCCTTATTAACCTAATGCAACCTCGCCAGCTTGTTTTCCGCCCCGAGGTTTTCTGGAACCATCCCATCCAGCGTGTTATCCATAATGAGCTGGAGCTTTACTGTCGCGCCCGTTCCGGCCGCTGCCTTGAAATTGGTGCCCACCCCCGCTCAATAAATGATAACCCTAATGTGGTCCACCGCTGCTTCCTCCGCCCTGCCGGGCGTGATGTTCAGCGTTGGTATACTGCCCCTACCCGCGGGCCGGCTGCTAATTGCCGGCGTTCCGCACTGCGCGGGCTCCCCGCTGCTGACCGCACTTACTGCTTCGACGGGTTTTCTGGCTGTAACTTTCCCGCCGAGACTGGCGTCGCCCTCTATTCTCTCCATGATATGTCACCATCTGATGTCGCCGAGGCTATGTTCCGCCATGGTATGACGCGGCTTTACGCTGCCCTCCACCTCCCGCCTGAGGTCCTGTTGCCCCCTGGCACATACCGCACCGCGTCGTACTTGCTGATCCATGACGGCAGGCGCGTTGTGGTGACGTATGAGGGTGACACTAGTGCTGGTTATAACCACGATGTTTCCAACCTGCGCTCCTGGATTAGAACCACTAAGGTTACCGGAGACCATCCTCTCGTCATTGAGCGGGTTAGGGCCATTGGCTGCCACTTTGTCCTCTTACTCACGGCAGCCCCGGAGCCATCACCTACGCCCTATGTTCCTTACCCCCGGTCTACCGAGGTCTATGTCCGATCGATCTTCGGCCCGGGTGGTACCCCCTCCCTATTTTCCAACCTCATGCTCCACTAAGTCGACCTTCCATGCTGTCCCTGCCCATATCTGGGACCGTCTCATGTTGTTCGGGGCCACCCTAGATGACCAAGCCTTTTGCTGCTCCCGCCTAATGACTTACCTCCGTGGCATTAGCTACAAGGTTACTGTGGGCACCCTTGTTGCCAATGAAGGCTGGAACGCCTCTGAGGTCGCTCTTACAGCTGTCATCACTGCCGCCTACCTTACCATCTGCCACCAGCGGTACCTCCGCACTCAGGCTATATCTAAGGGGATGCGCCGTCTGGAGCGGGAGCATGCTCAGAAGTTTATAACACGCCTCTACAGTTGGCTCTTTGAGAAGTCCGGCCGTGATTATATCCCCGGCCGTCAGTTGGAGTTCTACGCTCAGTGTAGGCGCTGGCTCTCGGCCGGCTTTTCATCTTGACCCACGGGTGTTGGTTTTTGATGAGTCGGCCCCCTGCCACTGTAGGACTGCGATTCGTAAGGCGGTCTCAAAGTTTTGCTGTTTTATGAAGTGGCTGGGCCAGGAGTGCACCTGTTTCCTACAACCTGCAGAAGGCGCCGTCGGCGACCAGGGCCATGACAACGAGGCCTATGAGGGGTCTGATGTCGACCCCGCTGAATCCGCTATTAGTGACATATCTGGGTCCTACGTCGTCCCTGGCACTGCCCTCCAACCGCTTTACCAAGCCCTTGACCTCCCCGCTGAGATTGTGGCTCGTGCAGGCCGGCTGACCGCCACAGTAAAGGTCTCCCAGGTCGACGGGCGGATCGATTGTGAGACCCTTCTCGGTAATAAAACCTTCCGCACGTCGTTTGTTGACGGGGCGGTTTTAGAGACTAATGGCCCAGAGCGCCACAATCTCTCTTTTGATGCCAGTCAGAGCACTATGGCCGCCGGCCCTTTCAGTCTCACCTATGCCGCCTCTGCTGCTGGGCTGGAGGTGCGCTATGTCGCTGCCGGGCTTGACCACCGGGCGGTTTTTGCCCCCGGCGTTTCACCCCGGTCAGCCCCTGGCGAGGTCACCGCCTTTTGTTCTGCCCTATACAGGTTTAATCGCGAGGCCCAGCGCCTTTCGCTCACCGGTAATTTTTGGTTCCATCCTGAGGGGCTCCTTGGCCCCTTTGCCCCGTTTTCCCCCGGGCATGTTTGGGAGTCGGCTAATCCATTCTGTGGAGAGAGCACACTTTACACCCGCACTTGGTCGGAGGTTGATGCTGTTTCTAGTCCAGCCCAGCCCGACTTAGGTTTTATATCTGAGCCTTCTATACCTAGTAGGGCCGCCACACTTACCCCGGCGGCCCCTCTACCCCCCCCTGCACGGAATCCTTCCCCTACTCCCTCTGCTCCGGCGCGTGGTGAGCCGGCTCCTGGCGCTACCGCCCGGGCCCCGGCCATAACCCACCAGGCGGCCCGGCATCGCCGCCTGCTCTTTACCTACCCGGATGGCTCTAAGGTATTCGCCGGCTCGCTGTTTGAGTCGACATGTACCTGGCTCGTTAACGCGTCTAATGTTG'
+print(dna_to_protein(test_sequences))
+# Logistic Growth Curve Function
+def logistic_growth_curve(time_points, carrying_capacity, max_growth_rate, lag_duration, exp_duration):
+    """
+    Simulates a logistic population growth curve with randomized lag and exponential phases.
 
-def growth_curve(time, max_pop_size, r_max, lag_dur, exp_dur):
-    population = np.zeros_like(time, dtype=float)
+    Parameters:
+        time_points (array): Array of time points.
+        carrying_capacity (int): Maximum population size.
+        max_growth_rate (float): Maximum growth rate.
+        lag_duration (int): Duration of the lag phase.
+        exp_duration (int): Duration of the exponential phase.
+
+    Returns:
+        array: Population values at each time point.
+    """
+    population_values = np.zeros_like(time_points, dtype=float)
 
     # Lag Phase
-    lag_end = lag_dur
-    exp_end = lag_end + exp_dur
+    lag_end = lag_duration
+    exp_end = lag_end + exp_duration
 
-    for i in range(len(time)):
-        t = time[i]
+    for i in range(len(time_points)):
+        time = time_points[i]
 
-        if t < lag_end:
-            population[i] = 1  # Initial cell count in lag phase
+        if time < lag_end:
+            population_values[i] = 1  # Initial cell count in lag phase
 
-        elif lag_end <= t < exp_end:
-            population[i] = population[i - 1] * np.exp(r_max * (t - lag_end))
+        elif lag_end <= time < exp_end:
+            population_values[i] = population_values[i - 1] * np.exp(max_growth_rate * (time - lag_end))
 
         else:  # Logistic Growth Phase
-            N = population[i - 1]
-            dNdt = r_max * ((max_pop_size - N) / max_pop_size) * N
-            population[i] = N + dNdt
+            N = population_values[i - 1]
+            dNdt = max_growth_rate * ((carrying_capacity - N) / carrying_capacity) * N
+            population_values[i] = N + dNdt
 
             # Ensure realistic population values
-            if population[i] < 0:
-                population[i] = 0
-            elif population[i] > max_pop_size:
-                population[i] = max_pop_size
+            population_values[i] = max(0, min(population_values[i], carrying_capacity))
 
-    return population
+    return population_values
 
-# Parameters
+# Generate 100 Growth Curves
 num_curves = 100
-time = np.linspace(0, 50, 100)  # Time points from 0 to 50
-K = 1000  # Carrying capacity
-r_max = 0.2  # Growth rate
+time_points = np.linspace(0, 50, 100)  # Time points from 0 to 50
+carrying_capacity = 1000  # Carrying Capacity
+max_growth_rate = 0.2  # Maximum Growth Rate
 
 # Create DataFrame
-df = pd.DataFrame({'Time': time})
-
-# Generate Growth Curves
-for i in range(num_curves):
-    lag_phase_add = np.random.randint(5, 15)
-    exp_phase_add = np.random.randint(10, 20)
-    population_curve = growth_curve(time, K, r_max, lag_phase_add, exp_phase_add)
-    df[f'Curve_{i+1}'] = population_curve
-
-# Save CSV
-df.to_csv("growth_curves.csv", index=False)
-print(df.head())
-
-def growth_curve(time, max_pop_size, r_max, lag_dur, exp_dur):
-    population = np.zeros_like(time, dtype=float)
-
-    # Lag phase
-    lag_end = np.random.randint(5, 15) + lag_dur
-    for i in range(len(time)):
-        if time[i] < lag_end:
-            population[i] = 1
-        else:
-            break
-
-    # Log phase
-    exp_end = np.random.randint(lag_end + 10, lag_end + 20) + exp_dur
-    for i in range(len(time)):
-        if time[i] >= lag_end and time[i] < exp_end:
-            population[i] = 1 * np.exp(r_max * (time[i] - lag_end))  # start log growth from 1 cell
-        elif time[i] >= exp_end:
-            break
-
-    # Logistic growth
-    for i in range(len(time)):
-        if time[i] >= exp_end:
-            N = population[i - 1]
-            dNdt = r_max * ((max_pop_size - N) / max_pop_size) * N
-            population[i] = N + dNdt
-
-            if population[i] < 0:
-                population[i] = 0  # prevent negative cell numbers
-            elif population[i] > max_pop_size:
-                population[i] = max_pop_size  # prevent overgrowth value
-
-    return population
-
-# Generate 100 growth curves
-num_curves = 100
-time = np.linspace(0, 50, 100)  # Time points from 0 to 50
-K = 1000  # Example maximum population (K)
-r_max = 0.2  # Example maximum growth rate
-
-df = pd.DataFrame({'Time': time})
+growth_df = pd.DataFrame({'Time': time_points})
 
 for i in range(num_curves):
-    lag_phase_add = np.random.randint(0, 5)
-    exp_phase_add = np.random.randint(0, 5)
-    population_curve = growth_curve(time, K, r_max, lag_phase_add, exp_phase_add)
-    df[f'Curve_{i+1}'] = population_curve
+    lag_phase_duration = np.random.randint(5, 15)
+    exp_phase_duration = np.random.randint(10, 20)
+    population_curve = logistic_growth_curve(time_points, carrying_capacity, max_growth_rate, lag_phase_duration, exp_phase_duration)
+    growth_df[f'Curve_{i+1}'] = population_curve
 
-print(df.head())
-df.to_csv("growth_curves.csv", index=False)  # Save to CSV
+# Save to CSV
+growth_df.to_csv("growth_curves.csv", index=False)
+print(growth_df.head())
 
+# Function to Find Time to Reach 80% of Carrying Capacity
+def time_to_80_percent_capacity(time_points, population_values):
+    """
+    Determines the time at which population reaches 80% of carrying capacity.
 
-# Function to find the time at which population reaches 80% of max
-def time_80percent(time, population):
-    max_pop = np.max(population)
-    target_pop = 0.8 * max_pop
+    Parameters:
+        time_points (array): Array of time values.
+        population_values (array): Population values.
 
-    indices = np.where(population >= target_pop)[0]
+    Returns:
+        float or None: Time when 80% of carrying capacity is reached, or None if not reached.
+    """
+    max_population = np.max(population_values)
+    threshold_population = 0.8 * max_population
+
+    indices = np.where(population_values >= threshold_population)[0]
 
     if indices.size > 0:
-        return time[indices[0]]
+        return time_points[indices[0]]
     else:
         return None  # If 80% isn't reached
 
-# Test for function 3:
-time = np.linspace(0, 50, 100)  # Random time points
-population = np.array([0, 10, 50, 100, 200, 300, 400, 500, 600, 700, 750, 780,
-                       795, 800, 805, 810, 800, 790, 750, 700])  # Random population data
+# Test 80% Capacity Function
+time_test = np.linspace(0, 50, 100)  # Example time points
+population_test = np.array([0, 10, 50, 100, 200, 300, 400, 500, 600, 700, 750, 780,
+                            795, 800, 805, 810, 800, 790, 750, 700])  # Example population data
 
-time_80 = time_80percent(time, population)
+time_80 = time_to_80_percent_capacity(time_test, population_test)
 
 if time_80 is not None:
     print(f"Time to reach 80% of carrying capacity: {time_80:.2f}")
 else:
     print("Population did not reach 80% of carrying capacity within the given timeframe.")
 
+# Hamming Distance Function
+def hamming_distance(string1, string2):
+    """
+    Computes the Hamming distance between two strings.
 
-# Function for calculating the Hamming distance
-def hamm_dist(s1, s2):
-    max_len = max(len(s1), len(s2))
-    s1, s2 = s1.ljust(max_len), s2.ljust(max_len)  # Pad shorter string with spaces
-    return sum(c1 != c2 for c1, c2 in zip(s1, s2))
+    Parameters:
+        string1 (str): First string.
+        string2 (str): Second string.
+
+    Returns:
+        int: Number of differing characters between the two strings.
+    """
+    max_length = max(len(string1), len(string2))
+    string1, string2 = string1.ljust(max_length), string2.ljust(max_length)  # Pad shorter string
+    return sum(char1 != char2 for char1, char2 in zip(string1, string2))
 
 # Test Hamming Distance
-slackname = "alvinnnnn"
-xname = "alvinoooo"
-print(f"Hamming Distance: {hamm_dist(slackname, xname)}")
+slack_username = "alvinnnnn"
+x_handle = "alvinoooo"
+print(f"Hamming Distance: {hamming_distance(slack_username, x_handle)}")
